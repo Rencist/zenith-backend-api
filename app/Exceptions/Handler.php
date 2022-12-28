@@ -76,7 +76,7 @@ class Handler extends ExceptionHandler
             date("Y-m-d H:i:s") . " " . $request_id_code . " " . $exception,
         );
 
-        if ($exception instanceof UserException)
+        if ($exception instanceof ZenithException)
         {
             return $exception->render();
         }

@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Core\Domain\Models\UserAccount;
 use App\Core\Domain\Service\JwtManagerInterface;
-use App\Exceptions\UserException;
+use App\Exceptions\ZenithException;
 use Closure;
 use Exception;
 use Illuminate\Http\RedirectResponse;
@@ -36,7 +36,7 @@ class CheckJwtIamMiddleware
     {
         $jwt = $request->bearerToken();
         if (!$jwt) {
-            UserException::throw('Token is not sent', 901);
+            ZenithException::throw('Token is not sent', 901);
         }
         $account = $this->jwt_manager->decode($jwt);
         $request->attributes->add(['account' => $account]);

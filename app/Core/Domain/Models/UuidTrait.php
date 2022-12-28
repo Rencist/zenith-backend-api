@@ -2,7 +2,7 @@
 
 namespace App\Core\Domain\Models;
 
-use App\Exceptions\UserException;
+use App\Exceptions\ZenithException;
 use Exception;
 use Ramsey\Uuid\Uuid;
 
@@ -17,7 +17,7 @@ trait UuidTrait
     public function __construct(string $uuid)
     {
         if (!Uuid::isValid($uuid)) {
-            UserException::throw("invalid uuid", 1000, 422);
+            ZenithException::throw("invalid uuid", 1000, 422);
         }
         $this->uuid = $uuid;
     }

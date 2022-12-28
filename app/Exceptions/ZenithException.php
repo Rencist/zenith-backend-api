@@ -5,7 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Http\JsonResponse;
 
-class UserException extends Exception
+class ZenithException extends Exception
 {
     private static int $status;
 

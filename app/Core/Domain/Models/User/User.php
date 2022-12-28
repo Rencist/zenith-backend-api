@@ -4,7 +4,7 @@ namespace App\Core\Domain\Models\User;
 
 use Exception;
 use App\Core\Domain\Models\Email;
-use App\Exceptions\UserException;
+use App\Exceptions\ZenithException;
 use Illuminate\Support\Facades\Hash;
 
 class User
@@ -84,7 +84,7 @@ class User
     public function verify(): void
     {
         if (!self::$verifier) {
-            UserException::throw("invalid credential", 1003, 401);
+            ZenithException::throw("invalid credential", 1003, 401);
         }
     }
 

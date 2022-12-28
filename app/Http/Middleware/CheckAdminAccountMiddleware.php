@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Core\Domain\Models\User\UserType;
 use App\Core\Domain\Repository\UserRepositoryInterface;
-use App\Exceptions\UserException;
+use App\Exceptions\ZenithException;
 use Closure;
 use Exception;
 use Illuminate\Http\RedirectResponse;
@@ -36,7 +36,7 @@ class CheckAdminAccountMiddleware
         /** @var MabaAccount $account */
         $account = $request->get('account');
         if (!$account) {
-            UserException::throw("admin account could not be decoded", 2056);
+            ZenithException::throw("admin account could not be decoded", 2056);
         }
         $user = $this->user_repository->find($account->getUserId());
         $user->beginVerification()->checkUserType(UserType::ADMIN)->verify();

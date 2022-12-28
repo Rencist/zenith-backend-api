@@ -13,7 +13,7 @@ use App\Core\Domain\Models\User\UserId;
 use Firebase\JWT\SignatureInvalidException;
 use App\Core\Domain\Service\JwtManagerInterface;
 use App\Core\Domain\Repository\UserRepositoryInterface;
-use App\Exceptions\UserException;
+use App\Exceptions\ZenithException;
 
 class JwtManager implements JwtManagerInterface
 {
@@ -53,15 +53,15 @@ class JwtManager implements JwtManagerInterface
                 new Key(config('app.key'), 'HS256')
             );
         } catch (ExpiredException $e) {
-            UserException::throw('JWT has expired', 902);
+            ZenithException::throw('JWT has expired', 902);
         } catch (SignatureInvalidException $e) {
-            UserException::throw('JWT signature is invalid', 903);
+            ZenithException::throw('JWT signature is invalid', 903);
         } catch (UnexpectedValueException $e) {
-            UserException::throw('Unexpected JWT format', 907);
+            ZenithException::throw('Unexpected JWT format', 907);
         }
         $user = $this->user_repository->find(new UserId($jwt->user_id));
         if (!$user) {
-            UserException::throw("User not found!", 1500);
+            ZenithException::throw("User not found!", 1500);
         }
         return new UserAccount(
             new UserId($jwt->user_id)

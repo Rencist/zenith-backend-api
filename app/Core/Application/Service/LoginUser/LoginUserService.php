@@ -4,7 +4,7 @@ namespace App\Core\Application\Service\LoginUser;
 
 use Exception;
 use App\Core\Domain\Models\Email;
-use App\Exceptions\UserException;
+use App\Exceptions\ZenithException;
 use App\Core\Domain\Service\JwtManagerInterface;
 use App\Core\Domain\Repository\UserRepositoryInterface;
 
@@ -30,7 +30,7 @@ class LoginUserService
     {
         $user = $this->user_repository->findByEmail(new Email($request->getEmail()));
         if (!$user) {
-            UserException::throw("user tidak ketemu", 1006, 404);
+            ZenithException::throw("user tidak ketemu", 1006, 404);
         }
         $type = $this->user_repository->findByEmail(new Email($request->getEmail()))->getType();
         
