@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\GejalaController;
 
 Route::get('hello', function () {
     return response()->json();
@@ -9,6 +10,7 @@ Route::get('hello', function () {
 
 Route::post('/create_user', [UserController::class, 'createUser']);
 Route::post('/login_user', [UserController::class, 'loginUser']);
+Route::post('/create_gejala', [GejalaController::class, 'createGejala']);
 
 Route::middleware(['iam'])->group(
     function () {
