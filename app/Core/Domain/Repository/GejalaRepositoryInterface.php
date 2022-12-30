@@ -10,4 +10,6 @@ interface GejalaRepositoryInterface
     public function persist(Gejala $Gejala): void;
 
     public function find(GejalaId $id): ?Gejala;
+
+    public function getAll(): array;
 }

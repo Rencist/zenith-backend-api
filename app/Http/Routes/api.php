@@ -11,6 +11,7 @@ Route::get('hello', function () {
 Route::post('/create_user', [UserController::class, 'createUser']);
 Route::post('/login_user', [UserController::class, 'loginUser']);
 Route::post('/create_gejala', [GejalaController::class, 'createGejala']);
+Route::get('/get_gejala', [GejalaController::class, 'getGejala']);
 
 Route::middleware(['iam'])->group(
     function () {
