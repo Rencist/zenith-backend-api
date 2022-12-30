@@ -27,17 +27,34 @@ class SqlGejalaRepository implements GejalaRepositoryInterface
 
         if (!$row) return null;
 
-        return $this->constructFromRow($row);
+        return $this->constructFromRows($row[0]);
     }
 
     /**
      * @throws Exception
      */
-    private function constructFromRow($row): Gejala
+    public function getAll(): array
     {
-        return new Gejala(
-            new GejalaId($row->id),
-            $row->name
-        );
+        $rows = DB::table('gejala')->get();
+
+        return $this->constructFromRows($rows->all());
+    }
+    
+    /**
+     * @param array $rows
+     * @return Gejala[]
+     * @throws Exception
+     */
+    public function constructFromRows(array $rows): array
+    {
+        $gejala = [];
+        foreach ($rows as $row) {
+            $gejala[] = new
+            Gejala(
+                new GejalaId($row->id),
+                $row->name,
+            );
+        }
+        return $gejala;
     }
 }

@@ -7,6 +7,7 @@ use Throwable;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
+use App\Core\Application\Service\GetGejala\GetGejalaService;
 use App\Core\Application\Service\CreateGejala\CreateGejalaRequest;
 use App\Core\Application\Service\CreateGejala\CreateGejalaService;
 
@@ -35,6 +36,11 @@ class GejalaController extends Controller
         }
         DB::commit();
         return $this->success();
+    }
+
+    public function getGejala(GetGejalaService $service): JsonResponse
+    {
+        return $this->successWithData($service->execute());
     }
 
 }
