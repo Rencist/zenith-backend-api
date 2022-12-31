@@ -43,4 +43,9 @@ class PasienController extends Controller
         return $this->success();
     }
 
+    public function getPasien(GetPasienService $service): JsonResponse
+    {
+        return $this->successWithData($service->execute());
+    }
+
 }

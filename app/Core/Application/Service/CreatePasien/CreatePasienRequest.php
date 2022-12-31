@@ -13,6 +13,9 @@ class CreatePasienRequest
 
     /**
      * @param string $name
+     * @param string $no_telp
+     * @param string $alamat
+     * @param string $foto
      */
     public function __construct(string $name, string $no_telp, string $alamat, UploadedFile $foto)
     {
