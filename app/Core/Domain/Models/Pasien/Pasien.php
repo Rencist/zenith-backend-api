@@ -34,10 +34,10 @@ class Pasien
     /**
      * @throws Exception
      */
-    public static function create(string $name, string $no_telp, string $alamat, string $foto): self
+    public static function create(PasienId $id, string $name, string $no_telp, string $alamat, string $foto): self
     {
         return new self(
-            PasienId::generate(),
+            $id,
             $name,
             $no_telp,
             $alamat,
