@@ -42,7 +42,7 @@ class CreatePasienService
             $request->getName(),
             $request->getNoTelp(),
             $request->getAlamat(),
-            $request->getFoto(),
+            $path,
         );
         $this->pasien_repository->persist($pasien);
     }
