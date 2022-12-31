@@ -30,7 +30,7 @@ class SqlPasienRepository implements PasienRepositoryInterface
 
         if (!$row) return null;
 
-        return $this->constructFromRows($row[0]);
+        return $this->constructFromRows([$row])[0];
     }
 
     /**

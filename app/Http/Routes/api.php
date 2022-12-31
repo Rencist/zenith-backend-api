@@ -13,6 +13,7 @@ Route::post('/create_user', [UserController::class, 'createUser']);
 Route::post('/login_user', [UserController::class, 'loginUser']);
 Route::post('/create_pasien', [PasienController::class, 'createPasien']);
 Route::get('/get_pasien', [PasienController::class, 'getPasien']);
+Route::get('/get_pasien/detail/{pasien_id}', [PasienController::class, 'getPasienDetail']);
 Route::post('/create_gejala', [GejalaController::class, 'createGejala']);
 Route::get('/get_gejala', [GejalaController::class, 'getGejala']);
 

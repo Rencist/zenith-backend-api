@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use App\Core\Application\Service\GetPasien\GetPasienService;
 use App\Core\Application\Service\CreatePasien\CreatePasienRequest;
 use App\Core\Application\Service\CreatePasien\CreatePasienService;
+use App\Core\Application\Service\GetPasienDetail\GetPasienDetailRequest;
+use App\Core\Application\Service\GetPasienDetail\GetPasienDetailService;
 
 class PasienController extends Controller
 {
@@ -46,6 +48,13 @@ class PasienController extends Controller
     public function getPasien(GetPasienService $service): JsonResponse
     {
         return $this->successWithData($service->execute());
+    }
+
+    public function getPasienDetail(string $pasien_id, GetPasienDetailService $service): JsonResponse
+    {
+        $input = new GetPasienDetailRequest($pasien_id);
+        $response = $service->execute($input);
+        return $this->successWithData($response);
     }
 
 }
