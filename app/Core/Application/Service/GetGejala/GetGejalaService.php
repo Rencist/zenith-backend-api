@@ -3,7 +3,7 @@
 namespace App\Core\Application\Service\GetGejala;
 
 use Exception;
-use App\Exceptions\UserException;
+use App\Exceptions\ZenithException;
 use App\Core\Domain\Models\Gejala\Gejala;
 use App\Core\Domain\Repository\GejalaRepositoryInterface;
 use App\Core\Application\Service\GetGejala\GetGejalaResponse;
@@ -28,7 +28,7 @@ class GetGejalaService
     {
         $gejala = $this->gejala_repository->getAll();
         if (count($gejala) < 1) {
-            UserException::throw("Gejala tidak ditemukan", 1006, 404);
+            ZenithException::throw("Gejala tidak ditemukan", 1006, 404);
         }
         return array_map(function (Gejala $gejala) {
             return new GetGejalaResponse(
