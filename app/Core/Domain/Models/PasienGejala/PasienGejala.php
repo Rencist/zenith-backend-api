@@ -3,11 +3,9 @@
 namespace App\Core\Domain\Models\PasienGejala;
 
 use Exception;
-use App\Core\Domain\Models\Email;
 use App\Core\Domain\Models\Gejala\GejalaId;
 use App\Core\Domain\Models\Pasien\PasienId;
-use App\Exceptions\PasienGejalaException;
-use Illuminate\Support\Facades\Hash;
+use App\Core\Domain\Models\PasienGejala\PasienGejalaId;
 
 class PasienGejala
 {

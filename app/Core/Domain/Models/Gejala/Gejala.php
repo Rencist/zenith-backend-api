@@ -3,9 +3,7 @@
 namespace App\Core\Domain\Models\Gejala;
 
 use Exception;
-use App\Core\Domain\Models\Email;
-use App\Exceptions\GejalaException;
-use Illuminate\Support\Facades\Hash;
+use App\Core\Domain\Models\Gejala\GejalaId;
 
 class Gejala
 {
