@@ -15,7 +15,8 @@ class SqlCheckInRepository implements CheckInRepositoryInterface
     {
         DB::table('check_in')->upsert([
             'id' => $check_in->getId()->toString(),
-            'penyakit' => $check_in->getPenyakit()
+            'pasien_id' => $check_in->getPasienId()->toString(),
+            'penyakit' => $check_in->getPenyakit(),
         ], 'id');
     }
 
@@ -36,11 +37,11 @@ class SqlCheckInRepository implements CheckInRepositoryInterface
      */
     public function findByPasienId(PasienId $pasien_id): array
     {
-        $row = DB::table('check_in')->where('pasien_id', $pasien_id->toString())->first();
+        $rows = DB::table('check_in')->where('pasien_id', $pasien_id->toString())->first();
 
-        if (!$row) return null;
+        if (!$rows) return null;
 
-        return $this->constructFromRows([$row]);
+        return $this->constructFromRows($rows->all());
     }
 
     /**
@@ -65,7 +66,8 @@ class SqlCheckInRepository implements CheckInRepositoryInterface
             $check_in[] = new
             CheckIn(
                 new CheckInId($row->id),
-                $row->name,
+                new PasienId($row->pasien_id),
+                $row->penyakit,
             );
         }
         return $check_in;
