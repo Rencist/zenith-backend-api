@@ -15,9 +15,12 @@ return new class extends Migration
     {
         Schema::create('check_in', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->uuid('pasien_id')->index();
             $table->uuid('penyakit')->index();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+
+            $table->foreign('pasien_id')->references('id')->on('pasien');
         });
     }
 
