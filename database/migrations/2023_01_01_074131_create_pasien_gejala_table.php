@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('pasien_gejala', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('pasien_id')->index();
+            $table->uuid('check_in_id')->index();
             $table->uuid('gejala_id')->index();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
 
-            $table->foreign('pasien_id')->references('id')->on('pasien');
+            $table->foreign('check_in_id')->references('id')->on('check_in');
             $table->foreign('gejala_id')->references('id')->on('gejala');
         });
     }
