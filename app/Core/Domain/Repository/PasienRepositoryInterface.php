@@ -11,5 +11,7 @@ interface PasienRepositoryInterface
 
     public function find(PasienId $id): ?Pasien;
 
+    public function findByNoTelp(string $no_telp): ?Pasien;
+
     public function getAll(): array;
 }

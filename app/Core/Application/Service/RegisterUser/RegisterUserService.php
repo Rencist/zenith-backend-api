@@ -26,7 +26,7 @@ class RegisterUserService
     public function execute(RegisterUserRequest $request)
     {
         $user = User::create(
-            UserType::USER,
+            UserType::PASIEN,
             new Email($request->getEmail()),
             $request->getNoTelp(),
             $request->getName(),

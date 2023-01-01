@@ -12,6 +12,7 @@ Route::get('hello', function () {
 Route::post('/create_user', [UserController::class, 'createUser']);
 Route::post('/login_user', [UserController::class, 'loginUser']);
 Route::post('/create_pasien', [PasienController::class, 'createPasien']);
+Route::post('/login_pasien', [PasienController::class, 'loginPasien']);
 Route::get('/get_pasien', [PasienController::class, 'getPasien']);
 Route::get('/get_pasien/detail/{pasien_id}', [PasienController::class, 'getPasienDetail']);
 Route::post('/create_gejala', [GejalaController::class, 'createGejala']);

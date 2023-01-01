@@ -13,16 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pasien', function (Blueprint $table) {
+        Schema::create('pasien_gejala', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('user_type', 16);
-            $table->string('name', 128);
-            $table->string('no_telp', 32);
-            $table->string('alamat', 256);
-            $table->string('foto');
-            $table->string('password', 64);
+            $table->uuid('pasien_id')->index();
+            $table->uuid('gejala_id')->index();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+
+            $table->foreign('pasien_id')->references('id')->on('pasien');
+            $table->foreign('gejala_id')->references('id')->on('gejala');
         });
     }
 
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pasien');
+        Schema::dropIfExists('pasien_gejala');
     }
 };
