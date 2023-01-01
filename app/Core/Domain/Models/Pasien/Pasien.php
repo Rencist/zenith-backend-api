@@ -6,10 +6,12 @@ use Exception;
 use App\Exceptions\ZenithException;
 use Illuminate\Support\Facades\Hash;
 use App\Core\Domain\Models\User\UserType;
+use App\Core\Domain\Models\Pasien\PasienId;
 
 class Pasien
 {
     private PasienId $id;
+    private UserType $type;
     private string $name;
     private string $no_telp;
     private string $alamat;
