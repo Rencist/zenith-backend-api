@@ -6,6 +6,7 @@ use Exception;
 use App\Exceptions\ZenithException;
 use Illuminate\Support\Facades\Storage;
 use App\Core\Domain\Models\Pasien\Pasien;
+use App\Core\Domain\Models\User\UserType;
 use App\Core\Domain\Models\Pasien\PasienId;
 use App\Core\Domain\Repository\PasienRepositoryInterface;
 
@@ -39,10 +40,12 @@ class CreatePasienService
 
         $pasien = Pasien::create(
             $pasien_id,
+            UserType::PASIEN,
             $request->getName(),
             $request->getNoTelp(),
             $request->getAlamat(),
             $path,
+            $request->getPassword()
         );
         $this->pasien_repository->persist($pasien);
     }
