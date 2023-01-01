@@ -16,8 +16,8 @@ class SqlPasienGejalaRepository implements PasienGejalaRepositoryInterface
     {
         DB::table('pasien_gejala')->upsert([
             'id' => $pasien_gejala->getId()->toString(),
-            'check_in_id' => $pasien_gejala->getCheckInId(),
-            'gejala_id' => $pasien_gejala->getGejalaId(),
+            'check_in_id' => $pasien_gejala->getCheckInId()->toString(),
+            'gejala_id' => $pasien_gejala->getGejalaId()->toString(),
         ], 'id');
     }
 

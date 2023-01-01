@@ -18,7 +18,7 @@ class CheckInController extends Controller
     /**
      * @throws Exception
      */
-    public function createCheckIn(Request $request, CreateCheckInService $service): JsonResponse
+    public function createCheckIn(Request $request, CreateCheckInService $service): string
     {
         $request->validate([
             'penyakit' => 'min:2|max:128|string'
@@ -29,16 +29,15 @@ class CheckInController extends Controller
                     $pasien['gejala']
                 );
             }, $request->input('pasien'));
-
         DB::beginTransaction();
         try {
-            $service->execute($input, $request->get('account'), $request->input('penyakit'));
+            $lmao = $service->execute($input, $request->get('account'), $request->input('penyakit'));
         } catch (Throwable $e) {
             DB::rollBack();
             throw $e;
         }
         DB::commit();
-        return $this->success();
+        return $this->successWithData($lmao);
     }
 
 }

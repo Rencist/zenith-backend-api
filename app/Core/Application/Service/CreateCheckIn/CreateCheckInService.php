@@ -7,6 +7,7 @@ use App\Core\Domain\Models\UserAccount;
 use App\Core\Domain\Models\CheckIn\CheckIn;
 use App\Core\Domain\Repository\CheckInRepositoryInterface;
 use App\Core\Application\Service\CreateCheckIn\CreateCheckInRequest;
+use App\Core\Domain\Models\CheckIn\CheckInId;
 use App\Core\Domain\Models\PasienGejala\PasienGejala;
 use App\Core\Domain\Repository\GejalaRepositoryInterface;
 use App\Core\Domain\Repository\PasienGejalaRepositoryInterface;
@@ -45,7 +46,6 @@ class CreateCheckInService
             $pasien_gejala = PasienGejala::create(
                 $check_in->getId(),
                 $gejala->getId(),
-                
             );
             $this->pasien_gejala_repository->persist($pasien_gejala);
         }
