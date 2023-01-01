@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('pasien_gejala', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('check_in_id')->index();
             $table->uuid('gejala_id')->index();
+            $table->uuid('check_in_id')->index();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
 

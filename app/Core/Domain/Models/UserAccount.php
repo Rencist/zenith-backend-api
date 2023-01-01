@@ -17,7 +17,7 @@ class UserAccount
     public function __construct(UserId $user_id, PasienId $pasien_id)
     {
         $this->user_id = $user_id;
-        $this->user_id = $pasien_id;
+        $this->pasien_id = $pasien_id;
     }
 
     /**

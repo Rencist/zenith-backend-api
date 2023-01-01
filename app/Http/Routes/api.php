@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GejalaController;
 use App\Http\Controllers\PasienController;
+use App\Http\Controllers\CheckInController;
 
 Route::get('hello', function () {
     return response()->json();
@@ -25,6 +26,7 @@ Route::middleware(['iam'])->group(
                 "success" => true
             ]);
         });
+        Route::post('/create_check_in', [CheckInController::class, 'createCheckIn']);
     }
 );
     

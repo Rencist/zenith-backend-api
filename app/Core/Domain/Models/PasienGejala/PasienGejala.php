@@ -2,7 +2,7 @@
 
 namespace App\Core\Domain\Models\PasienGejala;
 
-use App\Core\Domain\Models\CheckIn\CheckIn;
+use App\Core\Domain\Models\CheckIn\CheckInId;
 use Exception;
 use App\Core\Domain\Models\Gejala\GejalaId;
 use App\Core\Domain\Models\PasienGejala\PasienGejalaId;
@@ -10,15 +10,15 @@ use App\Core\Domain\Models\PasienGejala\PasienGejalaId;
 class PasienGejala
 {
     private PasienGejalaId $id;
-    private CheckIn $check_in_id;
+    private CheckInId $check_in_id;
     private GejalaId $gejala_id;
 
     /**
      * @param PasienGejalaId $id
-     * @param CheckIn $check_in_id
+     * @param CheckInId $check_in_id
      * @param GejalaId $gejala_id
      */
-    public function __construct(PasienGejalaId $id, CheckIn $check_in_id, GejalaId $gejala_id)
+    public function __construct(PasienGejalaId $id, CheckInId $check_in_id, GejalaId $gejala_id)
     {
         $this->id = $id;
         $this->check_in_id = $check_in_id;
@@ -28,10 +28,10 @@ class PasienGejala
     /**
      * @throws Exception
      */
-    public static function create(PasienGejalaId $id, CheckIn $check_in_id, GejalaId $gejala_id): self
+    public static function create(CheckInId $check_in_id, GejalaId $gejala_id): self
     {
         return new self(
-            $id,
+            PasienGejalaId::generate(),
             $check_in_id,
             $gejala_id
         );
@@ -46,9 +46,9 @@ class PasienGejala
     }
 
     /**
-     * @return CheckIn
+     * @return CheckInId
      */
-    public function getCheckInId(): CheckIn
+    public function getCheckInId(): CheckInId
     {
         return $this->check_in_id;
     }
