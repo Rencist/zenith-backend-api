@@ -136,4 +136,12 @@ class Pasien
     {
         return $this->hashed_password;
     }
+
+    /**
+     * @return UserType
+     */
+    public function getType(): UserType
+    {
+        return $this->type;
+    }
 }
