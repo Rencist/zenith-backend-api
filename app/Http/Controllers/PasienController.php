@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use App\Core\Application\Service\GetPasien\GetPasienService;
+use App\Core\Application\Service\LoginPasien\LoginPasienRequest;
+use App\Core\Application\Service\LoginPasien\LoginPasienService;
 use App\Core\Application\Service\CreatePasien\CreatePasienRequest;
 use App\Core\Application\Service\CreatePasien\CreatePasienService;
 use App\Core\Application\Service\GetPasienDetail\GetPasienDetailRequest;
@@ -31,8 +33,8 @@ class PasienController extends Controller
             $request->input('name'),
             $request->input('no_telp'),
             $request->input('alamat'),
-            $request->input('password'),
             $request->file('foto'),
+            $request->input('password'),
         );
 
         DB::beginTransaction();

@@ -15,10 +15,12 @@ return new class extends Migration
     {
         Schema::create('pasien', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->string('user_type', 16);
             $table->string('name', 128);
             $table->string('no_telp', 32);
             $table->string('alamat', 256);
             $table->string('foto');
+            $table->string('password', 64);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });

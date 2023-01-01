@@ -37,7 +37,7 @@ class LoginPasienService
         $pasien->beginVerification()
             ->checkPassword($request->getPassword())
             ->verify();
-        $token_jwt = $this->jwt_factory->createFromUser($pasien);
+        $token_jwt = $this->jwt_factory->createFromPasien($pasien);
         return new LoginPasienResponse($token_jwt, $type);
     }
 }

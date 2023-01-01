@@ -2,11 +2,12 @@
 
 namespace App\Infrastrucutre\Repository;
 
-use App\Core\Domain\Models\Pasien\Pasien;
-use App\Core\Domain\Models\Pasien\PasienId;
-use App\Core\Domain\Repository\PasienRepositoryInterface;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use App\Core\Domain\Models\Pasien\Pasien;
+use App\Core\Domain\Models\User\UserType;
+use App\Core\Domain\Models\Pasien\PasienId;
+use App\Core\Domain\Repository\PasienRepositoryInterface;
 
 class SqlPasienRepository implements PasienRepositoryInterface
 {
@@ -14,10 +15,13 @@ class SqlPasienRepository implements PasienRepositoryInterface
     {
         DB::table('pasien')->upsert([
             'id' => $pasien->getId()->toString(),
+            'user_type' => $pasien->getType()->value,
             'name' => $pasien->getName(),
             'no_telp' => $pasien->getNoTelp(),
             'alamat' => $pasien->getAlamat(),
-            'foto' => $pasien->getFoto()
+            'foto' => $pasien->getFoto(),
+            'password' => $pasien->getHashedPassword()
+
         ], 'id');
     }
 
@@ -27,6 +31,18 @@ class SqlPasienRepository implements PasienRepositoryInterface
     public function find(PasienId $id): ?Pasien
     {
         $row = DB::table('pasien')->where('id', $id->toString())->first();
+
+        if (!$row) return null;
+
+        return $this->constructFromRows([$row])[0];
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function findByNoTelp(string $no_telp): ?Pasien
+    {
+        $row = DB::table('pasien')->where('no_telp', $no_telp)->first();
 
         if (!$row) return null;
 
@@ -55,10 +71,12 @@ class SqlPasienRepository implements PasienRepositoryInterface
             $pasien[] = new
             Pasien(
                 new PasienId($row->id),
+                UserType::from($row->user_type),
                 $row->name,
                 $row->no_telp,
                 $row->alamat,
                 $row->foto,
+                $row->password,
             );
         }
         return $pasien;

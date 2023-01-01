@@ -2,18 +2,19 @@
 
 namespace App\Infrastrucutre\Service;
 
-use App\Core\Domain\Models\UserAccount;
 use Exception;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use UnexpectedValueException;
 use Firebase\JWT\ExpiredException;
+use App\Exceptions\ZenithException;
 use App\Core\Domain\Models\User\User;
 use App\Core\Domain\Models\User\UserId;
+use App\Core\Domain\Models\UserAccount;
+use App\Core\Domain\Models\Pasien\Pasien;
 use Firebase\JWT\SignatureInvalidException;
 use App\Core\Domain\Service\JwtManagerInterface;
 use App\Core\Domain\Repository\UserRepositoryInterface;
-use App\Exceptions\ZenithException;
 
 class JwtManager implements JwtManagerInterface
 {
@@ -36,6 +37,17 @@ class JwtManager implements JwtManagerInterface
         return JWT::encode(
             [
                 'user_id' => $user->getId()->toString()
+            ],
+            config('app.key'),
+            'HS256'
+        );
+    }
+
+    public function createFromPasien(Pasien $pasien): string
+    {
+        return JWT::encode(
+            [
+                'user_id' => $pasien->getId()->toString()
             ],
             config('app.key'),
             'HS256'

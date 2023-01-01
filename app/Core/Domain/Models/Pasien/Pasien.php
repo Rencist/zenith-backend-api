@@ -3,8 +3,6 @@
 namespace App\Core\Domain\Models\Pasien;
 
 use Exception;
-use App\Core\Domain\Models\Email;
-use App\Exceptions\PasienException;
 use App\Exceptions\ZenithException;
 use Illuminate\Support\Facades\Hash;
 use App\Core\Domain\Models\User\UserType;
