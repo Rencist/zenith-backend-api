@@ -34,6 +34,7 @@ class GetPasienService
             return new GetPasienResponse(
                 $pasien->getId()->toString(), 
                 $pasien->getName(),
+                $pasien->getType()->value,
                 $pasien->getNoTelp(),
                 $pasien->getAlamat(),
                 $pasien->getFoto(),
