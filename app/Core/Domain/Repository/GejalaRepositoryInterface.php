@@ -11,5 +11,7 @@ interface GejalaRepositoryInterface
 
     public function find(GejalaId $id): ?Gejala;
 
+    public function findByName(string $gejala_name): ?Gejala;
+
     public function getAll(): array;
 }

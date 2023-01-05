@@ -2,6 +2,8 @@
 
 namespace App\Infrastrucutre\Repository;
 
+use App\Core\Domain\Models\CheckIn\CheckInId;
+use App\Core\Domain\Models\Gejala\GejalaId;
 use App\Core\Domain\Models\PasienGejala\PasienGejala;
 use App\Core\Domain\Models\PasienGejala\PasienGejalaId;
 use App\Core\Domain\Repository\PasienGejalaRepositoryInterface;
@@ -14,8 +16,8 @@ class SqlPasienGejalaRepository implements PasienGejalaRepositoryInterface
     {
         DB::table('pasien_gejala')->upsert([
             'id' => $pasien_gejala->getId()->toString(),
-            'pasien_id' => $pasien_gejala->getPasienId(),
-            'gejala_id' => $pasien_gejala->getGejalaId(),
+            'check_in_id' => $pasien_gejala->getCheckInId()->toString(),
+            'gejala_id' => $pasien_gejala->getGejalaId()->toString(),
         ], 'id');
     }
 
@@ -53,8 +55,8 @@ class SqlPasienGejalaRepository implements PasienGejalaRepositoryInterface
             $pasien_gejala[] = new
             PasienGejala(
                 new PasienGejalaId($row->id),
-                $row->pasien_id,
-                $row->gejala_id,
+                new CheckInId($row->check_in_id),
+                new GejalaId($row->gejala_id),
             );
         }
         return $pasien_gejala;

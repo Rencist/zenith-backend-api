@@ -33,6 +33,18 @@ class SqlGejalaRepository implements GejalaRepositoryInterface
     /**
      * @throws Exception
      */
+    public function findByName(string $name): ?Gejala
+    {
+        $row = DB::table('gejala')->where('name', $name)->first();
+
+        if (!$row) return null;
+
+        return $this->constructFromRows([$row])[0];
+    }
+
+    /**
+     * @throws Exception
+     */
     public function getAll(): array
     {
         $rows = DB::table('gejala')->get();

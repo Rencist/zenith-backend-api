@@ -6,6 +6,8 @@ use Exception;
 use App\Core\Domain\Models\Email;
 use App\Exceptions\ZenithException;
 use Illuminate\Support\Facades\Hash;
+use App\Core\Domain\Models\User\UserId;
+use App\Core\Domain\Models\User\UserType;
 
 class User
 {
