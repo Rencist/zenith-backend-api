@@ -7,6 +7,7 @@ use Throwable;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
+use App\Core\Application\Service\PasienMe\PasienMeService;
 use App\Core\Application\Service\GetPasien\GetPasienService;
 use App\Core\Application\Service\LoginPasien\LoginPasienRequest;
 use App\Core\Application\Service\LoginPasien\LoginPasienService;
@@ -67,6 +68,12 @@ class PasienController extends Controller
     {
         $input = new GetPasienDetailRequest($pasien_id);
         $response = $service->execute($input);
+        return $this->successWithData($response);
+    }
+
+    public function me(Request $request, PasienMeService $service): JsonResponse
+    {
+        $response = $service->execute($request->get('account'));
         return $this->successWithData($response);
     }
 

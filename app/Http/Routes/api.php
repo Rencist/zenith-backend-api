@@ -27,6 +27,7 @@ Route::middleware(['iam'])->group(
             ]);
         });
         Route::post('/create_check_in', [CheckInController::class, 'createCheckIn']);
+        Route::get('/me', [PasienController::class, 'me']);
     }
 );
     
