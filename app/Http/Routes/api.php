@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\GejalaController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\CheckInController;
@@ -18,6 +19,8 @@ Route::get('/get_pasien', [PasienController::class, 'getPasien']);
 Route::get('/get_pasien/detail/{pasien_id}', [PasienController::class, 'getPasienDetail']);
 Route::post('/create_gejala', [GejalaController::class, 'createGejala']);
 Route::get('/get_gejala', [GejalaController::class, 'getGejala']);
+
+Route::get('/stream_image', [ImageController::class, 'streamImage']);
 
 Route::middleware(['iam'])->group(
     function () {
